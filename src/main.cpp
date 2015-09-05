@@ -1,25 +1,24 @@
 
-#include <qpa/qplatforminputcontextplugin_p.h>
+#include <QtGui/qgenericplugin.h>
 #include <src/qtestplugin.h>
-#include <QtCore/QStringList>
 
 QT_BEGIN_NAMESPACE
 
-class QMyPlugin : public QPlatformInputContextPlugin
+class QMyPlugin : public QGenericPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID QPlatformInputContextFactoryInterface_iid FILE "myplugin.json")
+    Q_PLUGIN_METADATA(IID QGenericPluginFactoryInterface_iid FILE "myplugin.json")
 
 public:
-    QTestPlugin *create(const QString &system, const QStringList &paramList);
+    QObject *create(const QString &name, const QString &spec);
 };
 
-QTestPlugin * QMyPlugin::create(const QString &system, const QStringList &paramList)
+QObject * QMyPlugin::create(const QString &name, const QString &spec)
 {
-    Q_UNUSED(paramList);
+    Q_UNUSED(spec);
 
-    if (!system.compare(QLatin1String("MyPlugin"), Qt::CaseInsensitive))
-        return new QTestPlugin;
+    if (!name.compare(QLatin1String("MyPlugin"), Qt::CaseInsensitive))
+        return new QTestPlugin();
 
     return 0;
 }

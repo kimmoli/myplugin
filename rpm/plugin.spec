@@ -36,5 +36,5 @@ rm -rf %{buildroot}
 %qmake5_install
 
 %files
-%attr(755,root,root) /usr/lib/qt5/plugins/platforminputcontexts/libqmyplugin.so
+%attr(755,root,root) /usr/lib/qt5/plugins/generic/libqmyplugin.so
 

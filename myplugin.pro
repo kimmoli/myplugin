@@ -1,6 +1,6 @@
 TARGET = qmyplugin
 
-QT += qml quick gui-private
+QT += qml quick gui
 QT += core-private platformsupport-private gui-private dbus
 
 CONFIG += plugin
@@ -12,7 +12,7 @@ SOURCES = \
     src/qtestplugin.cpp
 
 
-target.path = $$[QT_INSTALL_PLUGINS]/platforminputcontexts
+target.path = $$[QT_INSTALL_PLUGINS]/generic
 
 INSTALLS += target
 
