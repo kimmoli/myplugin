@@ -2,6 +2,7 @@
 #include <qpa/qplatforminputcontextplugin_p.h>
 #include <src/qtestplugin.h>
 #include <QtCore/QStringList>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 
@@ -11,12 +12,14 @@ class QMyPlugin : public QPlatformInputContextPlugin
     Q_PLUGIN_METADATA(IID QPlatformInputContextFactoryInterface_iid FILE "myplugin.json")
 
 public:
-    QTestPlugin *create(const QString &system, const QStringList &paramList);
+    QPlatformInputContext *create(const QString &system, const QStringList &paramList);
 };
 
-QTestPlugin * QMyPlugin::create(const QString &system, const QStringList &paramList)
+QPlatformInputContext *QMyPlugin::create(const QString &system, const QStringList &paramList)
 {
     Q_UNUSED(paramList);
+
+    qDebug() << system;
 
     if (!system.compare(QLatin1String("MyPlugin"), Qt::CaseInsensitive))
         return new QTestPlugin;
